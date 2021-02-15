@@ -35,7 +35,7 @@ jobs:
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
       - run: java -jar adguard-all-1.0.jar
-      - run: git status  s
+      - run: git status 
       - uses: actions-go/push@v1
         with:
           commit-files: adguard-dnsmasq2.conf
@@ -43,4 +43,4 @@ jobs:
           commit-message: "update build"
 
           remote: main
-          token: ${{ github.token }}
+          token: ${{secrets.GITHUB_TOKEN}}
