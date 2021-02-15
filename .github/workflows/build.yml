@@ -36,11 +36,11 @@ jobs:
           architecture: x64 # (x64 or x86) - defaults to x64
       - run: java -jar adguard-all-1.0.jar
       - run: git status 
-      - uses: actions-go/push@v1
+      - run: git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - run: git config --local user.name "github-actions[bot]"
+      - run: git add adguard-dnsmasq2.conf
+      - run: git commit -m "update by bot"
+      - uses: ad-m/github-push-action@master
         with:
-          commit-files: adguard-dnsmasq2.conf
-          # The commit message used when changes needs to be committed
-          commit-message: "update build"
-
-          
-          token: ${{secrets.GITHUB_TOKEN}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
