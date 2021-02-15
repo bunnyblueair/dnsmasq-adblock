@@ -4,11 +4,14 @@ name: CI
 
 # Controls when the action will run. 
 on:
+  create:
+    tags:
+      - v*
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,4 +35,12 @@ jobs:
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
       - run: java -jar adguard-all-1.0.jar
-      - run: git status  
+      - run: git status  s
+      - uses: actions-go/push@v1
+        with:
+          commit-files: adguard-dnsmasq2.conf
+          # The commit message used when changes needs to be committed
+          commit-message: "update build"
+
+          remote: main
+          token: ${{ github.token }}
