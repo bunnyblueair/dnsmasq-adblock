@@ -8,8 +8,8 @@ on:
     tags:
       - v*
   # Triggers the workflow on push or pull request events but only for the main branch
-#   push:
-#     branches: [ main ]
+  push:
+    branches: [ main ]
 #   pull_request:
 #     branches: [ main ]
 
@@ -37,9 +37,12 @@ jobs:
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
       - run: echo ${{ secrets.GITHUB_TOKEN }} >dns.txt
-      - run: sudo apt install dnsmasq 
-      - run: sudo sed -i 's/^#\(port=5353\)/\1/' /etc/dnsmasq.conf  
+      - run: sudo systemctl disable --now systemd-resolved
+      - run: sudo rm -rf /etc/resolv.conf
+      - run: sudo echo "nameserver 8.8.8.8" > /etc/resolv.conf   
+      - run: sudo apt-get install dnsmasq dnsutils ldnsutils -y 
       - run: sudo service dnsmasq restart
+      - run: sudo systemctl status dnsmasq
       - run: java -jar adguard-all-1.0.jar
       - run: git status 
       - run: git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
