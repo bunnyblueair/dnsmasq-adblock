@@ -37,7 +37,7 @@ jobs:
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
       
-      - run: sudo apt-get update && sudo apt-get install dnsmasq dnsutils ldnsutils  network-manager --fix-missing 
+      - run: sudo apt-get update && sudo apt-get install dnsmasq dnsutils ldnsutils net-tools network-manager --fix-missing 
       - run: wget https://raw.githubusercontent.com/bunnyblueair/dnsmasq-adblock/main/dns.sh && chmod +x dns.sh && sudo ./dns.sh
       - run: nmcli -t  connection show --active | cut -f 01 -d ':'
      # - run: wget https://raw.githubusercontent.com/bunnyblueair/dnsmasq-adblock/main/network.sh && chmod +x network.sh && sudo ./network.sh
