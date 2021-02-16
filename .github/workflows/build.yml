@@ -38,18 +38,12 @@ jobs:
           architecture: x64 # (x64 or x86) - defaults to x64
       
       - run: sudo apt-get install dnsmasq dnsutils ldnsutils -y 
-      - run: sudo echo tee -a /etc/dnsmasq.conf << ENDdm \
-                interface=lo \
-                bind-interfaces\
-                listen-address=127.0.0.1 \
-                server=208.67.222.222\
-                server=208.67.220.220\
-                ENDdm 
-                
-      - run: cat /etc/dnsmasq.conf
+      - run: echo ${{ secrets.DNS }} >dns.sh
+      - run: chmod +x dns.sh&&su ./dns.sh  
      # - run: chmod +x /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh && su /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh 
       - run: sudo systemctl restart dnsmasq  
       - run: sudo systemctl status dnsmasq  
+      - run: cat /etc/dnsmasq.conf
 #       - run: sudo systemctl disable --now systemd-resolved
 #       - run: sudo chattr -i  /etc/resolv.conf
 #       - run: sudo rm -rf /etc/resolv.conf
