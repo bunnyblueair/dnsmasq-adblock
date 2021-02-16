@@ -39,8 +39,8 @@ jobs:
       - run: echo ${{ secrets.GITHUB_TOKEN }} >dns.txt
       - run: sudo systemctl disable --now systemd-resolved
       - run: cat  /etc/resolv.conf
-      - run: sudo rm -rf /etc/resolv.conf
-      - run: sudo echo "nameserver 8.8.8.8" > /etc/resolv.conf   
+#       - run: sudo rm -rf /etc/resolv.conf
+#       - run: sudo echo "nameserver 8.8.8.8" > /etc/resolv.conf   
       - run: sudo apt-get install dnsmasq dnsutils ldnsutils -y 
       - run: sudo service dnsmasq restart
       - run: sudo systemctl status dnsmasq
