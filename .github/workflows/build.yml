@@ -36,14 +36,16 @@ jobs:
           java-version: '8.0.232' # The JDK version to make available on the path.
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
+      
+      - run: sudo apt-get install dnsmasq dnsutils ldnsutils -y 
       - run: sudo echo tee -a /etc/dnsmasq.conf << ENDdm \
                 interface=lo \
                 bind-interfaces\
                 listen-address=127.0.0.1 \
                 server=208.67.222.222\
                 server=208.67.220.220\
-                ENDdm >dns.txt
-      - run: sudo apt-get install dnsmasq dnsutils ldnsutils -y  
+                ENDdm 
+ 
      # - run: chmod +x /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh && su /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh 
       - run: sudo systemctl restart dnsmasq  
       - run: sudo systemctl status dnsmasq  
