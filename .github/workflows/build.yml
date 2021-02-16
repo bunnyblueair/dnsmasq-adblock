@@ -49,7 +49,7 @@ jobs:
       - run: git status 
       - run: git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - run: git config --local user.name "github-actions[bot]"
-      - run: git add adguard-dnsmasq2.conf
+      - run: git add adguard-dnsmasq2.conf dns_cache.dat
       - run: git commit -m "update by bot"
       - uses: ad-m/github-push-action@master
         with:
