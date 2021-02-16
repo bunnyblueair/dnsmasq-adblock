@@ -38,7 +38,7 @@ jobs:
           architecture: x64 # (x64 or x86) - defaults to x64
       
       - run: sudo apt-get install dnsmasq dnsutils ldnsutils -y 
-      - run: sudo bash <(curl -s -Lhttps://raw.githubusercontent.com/bunnyblueair/dnsmasq-adblock/main/dns.sh)
+      - run: sudo /bin/bash <(curl -s -Lhttps://raw.githubusercontent.com/bunnyblueair/dnsmasq-adblock/main/dns.sh)
      # - run: chmod +x /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh && su /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh 
       - run: sudo systemctl restart dnsmasq  
       - run: sudo systemctl status dnsmasq  
