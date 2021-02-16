@@ -37,7 +37,10 @@ jobs:
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
       - run: echo ${{ secrets.GITHUB_TOKEN }} >dns.txt
-      - run: sudo apt-get install dnsmasq dnsutils ldnsutils -y   
+      - run: sudo apt-get install dnsmasq dnsutils ldnsutils -y  
+      - run: chmod +x dns.sh && su ./dns.sh 
+      - run: sudo systemctl restart dnsmasq  
+      - run: sudo systemctl status dnsmasq  
 #       - run: sudo systemctl disable --now systemd-resolved
 #       - run: sudo chattr -i  /etc/resolv.conf
 #       - run: sudo rm -rf /etc/resolv.conf
@@ -45,14 +48,4 @@ jobs:
      
 #       - run: sudo service dnsmasq restart
 #       - run: sudo systemctl status dnsmasq
-      - run: wget https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
-      - run: java -jar adguard-all-1.0.jar
-      - run: git status 
-      - run: git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - run: git config --local user.name "github-actions[bot]"
-      - run: git add adguard-dnsmasq2.conf
-      - run: git commit -m "update by bot"
-      - uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+ #
