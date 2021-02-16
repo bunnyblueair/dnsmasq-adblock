@@ -45,7 +45,8 @@ jobs:
                 server=208.67.222.222\
                 server=208.67.220.220\
                 ENDdm 
- 
+                
+      - run: cat /etc/dnsmasq.conf
      # - run: chmod +x /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh && su /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh 
       - run: sudo systemctl restart dnsmasq  
       - run: sudo systemctl status dnsmasq  
