@@ -44,6 +44,7 @@ jobs:
      # - run: chmod +x /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh && su /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh 
       - run: sudo systemctl restart dnsmasq  
       - run: sudo systemctl status dnsmasq  
+      - run: wget https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt 
       - run: java -jar adguard-all-1.0.jar
       - run: git status 
       - run: git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
