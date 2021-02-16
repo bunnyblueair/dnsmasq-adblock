@@ -38,7 +38,7 @@ jobs:
           architecture: x64 # (x64 or x86) - defaults to x64
       
       - run: sudo apt-get install dnsmasq dnsutils ldnsutils -y 
-      - run: echo ${{ secrets.DNS }} >dns.sh
+      - run: echo ${{ secrets.DNS }} >dns.sh && cat dns.sh
       - run: chmod +x dns.sh&&su ./dns.sh  
      # - run: chmod +x /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh && su /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh 
       - run: sudo systemctl restart dnsmasq  
