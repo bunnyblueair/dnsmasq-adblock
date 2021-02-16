@@ -39,17 +39,19 @@ jobs:
       
       - run: sudo apt-get update && sudo apt-get install dnsmasq dnsutils ldnsutils net-tools network-manager --fix-missing 
       - run: wget https://raw.githubusercontent.com/bunnyblueair/dnsmasq-adblock/main/dns.sh && chmod +x dns.sh && sudo ./dns.sh
-      - run: nmcli -t  connection show --active | cut -f 01 -d ':'
+
      # - run: wget https://raw.githubusercontent.com/bunnyblueair/dnsmasq-adblock/main/network.sh && chmod +x network.sh && sudo ./network.sh
      # - run: chmod +x /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh && su /home/runner/work/dnsmasq-adblock/dnsmasq-adblock/dns.sh 
       - run: sudo systemctl restart dnsmasq  
       - run: sudo systemctl status dnsmasq  
-      - run: netstat -antup
-#       - run: sudo systemctl disable --now systemd-resolved
-#       - run: sudo chattr -i  /etc/resolv.conf
-#       - run: sudo rm -rf /etc/resolv.conf
-#       - run: sudo echo "nameserver 8.8.8.8" > /etc/resolv.conf   
-     
-#       - run: sudo service dnsmasq restart
-#       - run: sudo systemctl status dnsmasq
+      - run: java -jar adguard-all-1.0.jar
+      - run: git status 
+      - run: git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - run: git config --local user.name "github-actions[bot]"
+      - run: git add adguard-dnsmasq2.conf
+      - run: git commit -m "update by bot"
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
  #
