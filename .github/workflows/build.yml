@@ -5,7 +5,8 @@ name: CI
 # Controls when the action will run. 
 on:
   schedule:
-    - cron: '*/2 * * * *'
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '*/2 * * * *'
     
 #   create:
 #     tags:
