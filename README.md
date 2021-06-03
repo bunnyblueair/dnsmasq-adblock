@@ -9,7 +9,7 @@ the file is adblock from adguard for dnsmasq
 
 ## Uage
 
-`ssh yourname@router.asus.com'
+`ssh yourname@router.asus.com`
 
 and cd /jffs/configs/dnsmasq.d
 ```
@@ -21,3 +21,9 @@ and then
 ```
 restart dnsmasq or router
 ```
+
+## Supported
+ - block Pinduoduo
+ - block Gifshow
+ - block tiktok
+ - block ad via adguard
